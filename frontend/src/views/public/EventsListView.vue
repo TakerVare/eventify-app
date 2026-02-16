@@ -52,6 +52,9 @@ const {
 // Usar la ref computada del store directamente para evitar anidamiento
 const events = eventsStore.publishedEvents
 
+
+const displayedEvents = computed(() => events.value);
+/*
 const displayedEvents = computed(() => {
   // En producción, la paginación la hace el backend
   // Aquí simulamos paginación del lado del cliente para el desarrollo
@@ -59,7 +62,7 @@ const displayedEvents = computed(() => {
   const end = start + pageSize.value
   return events.value.slice(start, end)
 })
-
+*/
 // Métodos
 async function loadEvents(filters: EventSearchParams) {
   loading.value = true

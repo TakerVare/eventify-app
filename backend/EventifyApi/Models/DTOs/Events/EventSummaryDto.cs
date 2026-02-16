@@ -17,10 +17,12 @@ public class EventSummaryDto
     public EventStatus Status { get; set; }
 
     // Relaciones simplificadas (solo IDs y nombres)
-    public int LocationId { get; set; }
-    public string LocationName { get; set; } = string.Empty;
+    public int LocationId { get; set; }    
     public int CategoryId { get; set; }
-    public string CategoryName { get; set; } = string.Empty;
+
+    // AÑADIMOS objetos DTO anidados:
+    public LocationSummaryDto? Location { get; set; }
+    public CategoryDto? Category { get; set; }
     public string CategoryColor { get; set; } = string.Empty;
 
     // Propiedades calculadas
