@@ -19,6 +19,8 @@ public static class DbSeeder
             // Ejecutar seeders en orden
             await CategorySeeder.SeedAsync(context);
             await UserSeeder.SeedAsync(context);
+            await LocationSeeder.SeedAsync(context);
+            await EventSeeder.SeedAsync(context);
 
             Console.WriteLine("=============================================================================");
             Console.WriteLine("✅ SEEDERS COMPLETADOS EXITOSAMENTE");
