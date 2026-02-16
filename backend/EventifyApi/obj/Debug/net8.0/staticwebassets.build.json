@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "EDvQC8yhmjoMY80dAyp10QZvwCuhPXXXuovBCn1Chhw=",
+  "Source": "EventifyApi",
+  "BasePath": "_content/EventifyApi",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
