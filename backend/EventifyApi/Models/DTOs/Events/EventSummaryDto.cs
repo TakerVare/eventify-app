@@ -27,6 +27,10 @@ public class EventSummaryDto
     public CategoryDto? Category { get; set; }
     public string CategoryColor { get; set; } = string.Empty;
 
+    // Nombres expuestos para listados (mapeados desde entidades relacionadas)
+    public string? LocationName { get; set; }
+    public string? CategoryName { get; set; }
+
     // Propiedades calculadas
     public bool IsFull => RegisteredCount >= Capacity;
     public int AvailableSpots => Math.Max(0, Capacity - RegisteredCount);
