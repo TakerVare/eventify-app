@@ -1,3 +1,5 @@
+using EventifyApi.Models.DTOs.Categories;
+using EventifyApi.Models.DTOs.Locations;
 using EventifyApi.Models.Entities.Enums;
 
 namespace EventifyApi.Models.DTOs.Events;
