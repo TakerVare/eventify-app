@@ -26,6 +26,7 @@ public class EventSummaryDto
     public LocationSummaryDto? Location { get; set; }
     public CategoryDto? Category { get; set; }
     public string CategoryColor { get; set; } = string.Empty;
+    public string Description { get; set; } = string.Empty;
 
     // Nombres expuestos para listados (mapeados desde entidades relacionadas)
     public string? LocationName { get; set; }

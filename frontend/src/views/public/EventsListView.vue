@@ -45,24 +45,18 @@ const {
   changePage,
   nextPage,
   previousPage,
-  updateTotalCount
-} = usePagination(12)
+  setTotalCount // <--- 1. CORRECCIÓN DE NOMBRE (antes era updateTotalCount)
+} = usePagination({ initialPageSize: 12 })
 
 // Computados
 // Usar la ref computada del store directamente para evitar anidamiento
-const events = eventsStore.publishedEvents
+const events = computed(() => eventsStore.publishedEvents)
 
 
-const displayedEvents = computed(() => events.value);
-/*
 const displayedEvents = computed(() => {
-  // En producción, la paginación la hace el backend
-  // Aquí simulamos paginación del lado del cliente para el desarrollo
-  const start = (currentPage.value - 1) * pageSize.value
-  const end = start + pageSize.value
-  return events.value.slice(start, end)
+  // El backend ya nos da la página correcta, no necesitamos hacer slice
+  return events.value
 })
-*/
 // Métodos
 async function loadEvents(filters: EventSearchParams) {
   loading.value = true
@@ -73,7 +67,7 @@ async function loadEvents(filters: EventSearchParams) {
 
     // Actualizar contador de paginación
     // En producción, esto vendría del backend
-    updateTotalCount(events.value.length)
+    setTotalCount(events.value.length)
   } catch (error) {
     console.error('Error loading events:', error)
   } finally {
@@ -97,6 +91,11 @@ function handlePageChange(page: number) {
   // Scroll to top suavemente
   window.scrollTo({ top: 0, behavior: 'smooth' })
 }
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' })
+}
+
 
 // Cargar eventos iniciales
 onMounted(async () => {
@@ -227,7 +226,7 @@ onMounted(async () => {
       color="primary"
       app
       appear
-      @click="window.scrollTo({ top: 0, behavior: 'smooth' })"
+      @click="scrollToTop" 
     />
   </v-container>
 </template>

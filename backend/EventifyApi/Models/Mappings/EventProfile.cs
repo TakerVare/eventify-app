@@ -26,6 +26,7 @@ public class EventProfile : Profile
             .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId))
             .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.Name))
             .ForMember(dest => dest.CategoryColor, opt => opt.MapFrom(src => src.Category.Color))
+            .ForMember(dest => dest.Description, opt => opt.MapFrom(src => src.Description))
             .ForMember(dest => dest.IsFull, opt => opt.MapFrom(src => src.RegisteredCount >= src.Capacity))
             .ForMember(dest => dest.AvailableSpots, opt => opt.MapFrom(src => Math.Max(0, src.Capacity - src.RegisteredCount)));
 
