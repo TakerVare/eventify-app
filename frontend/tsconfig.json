@@ -3,13 +3,12 @@
  * TSCONFIG.JSON - Configuración de TypeScript
  * =============================================================================
  * Configuración principal de TypeScript para el proyecto Vue 3.
+ * =============================================================================
+ *
  * Incluye reglas estrictas y configuración optimizada para Vite.
  * =============================================================================
  */
 {
-  // Extensión de la configuración base de Vue
-  "extends": "@vue/tsconfig/tsconfig.dom.json",
-
   // ===========================================================================
   // OPCIONES DEL COMPILADOR
   // ===========================================================================
