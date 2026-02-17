@@ -19,6 +19,17 @@ import { useUiStore } from './ui'
 // NOTE: El servicio authService se creará en el siguiente paso
 // import { authService } from '@/services/authService'
 
+/**
+ * Devuelve el rol de prueba según el email (solo para el mock de login).
+ * Coincide con los usuarios de prueba mostrados en LoginView.
+ */
+function getMockRoleFromEmail(email: string): UserRole {
+  const normalized = email.trim().toLowerCase()
+  if (normalized === 'admin@eventify.com') return 'Admin' as UserRole
+  if (normalized === 'organizador@eventify.com') return 'Organizer' as UserRole
+  return 'User' as UserRole
+}
+
 // -----------------------------------------------------------------------------
 // DEFINICIÓN DEL STORE
 // -----------------------------------------------------------------------------
@@ -127,16 +138,17 @@ export const useAuthStore = defineStore('auth', () => {
       // TODO: Llamar al servicio de autenticación cuando se implemente
       // const response = await authService.login(credentials)
 
-      // MOCK: Simular respuesta del backend por ahora
+      // MOCK: Simular respuesta del backend; el rol según el email de prueba
+      const mockRole = getMockRoleFromEmail(credentials.email)
       const mockResponse: AuthResponse = {
         token: 'mock-jwt-token-' + Date.now(),
         expiresAt: new Date(Date.now() + 3600000).toISOString(), // 1 hora
         user: {
           id: 1,
           email: credentials.email,
-          firstName: 'Usuario',
+          firstName: mockRole === 'Admin' ? 'Admin' : mockRole === 'Organizer' ? 'Organizador' : 'Usuario',
           lastName: 'Demo',
-          role: 'Admin' as UserRole,
+          role: mockRole,
           isActive: true,
           createdAt: new Date().toISOString()
         }
@@ -149,7 +161,7 @@ export const useAuthStore = defineStore('auth', () => {
       return true
     } catch (err: any) {
       error.value = err.message || 'Error al iniciar sesión'
-      uiStore.showError(error.value)
+      uiStore.showError(error.value ?? 'Error al iniciar sesión')
       return false
     } finally {
       loading.value = false
@@ -193,7 +205,7 @@ export const useAuthStore = defineStore('auth', () => {
       return true
     } catch (err: any) {
       error.value = err.message || 'Error al registrar usuario'
-      uiStore.showError(error.value)
+      uiStore.showError(error.value ?? 'Error al registrar usuario')
       return false
     } finally {
       loading.value = false

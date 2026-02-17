@@ -154,7 +154,7 @@ const routes: RouteRecordRaw[] = [
       title: 'Gestión de Ubicaciones',
       layout: 'admin',
       requiresAuth: true,
-      roles: ['Admin'] as UserRole[]
+      roles: ['Admin', 'Organizer'] as UserRole[]
     }
   },
   {
@@ -165,7 +165,7 @@ const routes: RouteRecordRaw[] = [
       title: 'Crear Ubicación',
       layout: 'admin',
       requiresAuth: true,
-      roles: ['Admin'] as UserRole[]
+      roles: ['Admin', 'Organizer'] as UserRole[]
     }
   },
   {
@@ -176,9 +176,24 @@ const routes: RouteRecordRaw[] = [
       title: 'Editar Ubicación',
       layout: 'admin',
       requiresAuth: true,
-      roles: ['Admin'] as UserRole[]
+      roles: ['Admin', 'Organizer'] as UserRole[]
     },
     props: true
+  },
+
+  // ---------------------------------------------------------------------------
+  // RUTAS DE GESTIÓN DE CATEGORÍAS (SOLO ADMIN)
+  // ---------------------------------------------------------------------------
+  {
+    path: '/admin/categories',
+    name: 'AdminCategoriesList',
+    component: () => import('@/views/admin/categories/CategoriesListView.vue'),
+    meta: {
+      title: 'Gestión de Categorías',
+      layout: 'admin',
+      requiresAuth: true,
+      roles: ['Admin', 'Organizer'] as UserRole[]
+    }
   },
 
   // ---------------------------------------------------------------------------
@@ -297,9 +312,11 @@ router.beforeEach((to, from, next) => {
     // Si está autenticado y trata de acceder a login/register, redirigir
     console.log('[Router] Usuario autenticado intentando acceder a ruta de invitado, redirigiendo...')
 
-    // Solo administradores van al panel de administración; el resto a home
+    // Admin → dashboard; Organizer → eventos admin; User → home
     if (authStore.isAdmin) {
       next('/admin/dashboard')
+    } else if (authStore.isOrganizer) {
+      next('/admin/events')
     } else {
       next('/')
     }

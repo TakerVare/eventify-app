@@ -67,7 +67,13 @@ const menuItems = computed(() => {
       title: 'Ubicaciones',
       icon: 'mdi-map-marker',
       to: '/admin/locations',
-      roles: ['Admin']
+      roles: ['Admin', 'Organizer']
+    },
+    {
+      title: 'Categorías',
+      icon: 'mdi-tag-multiple',
+      to: '/admin/categories',
+      roles: ['Admin', 'Organizer']
     },
     {
       title: 'Usuarios',

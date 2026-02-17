@@ -12,28 +12,28 @@ Eventify es una plataforma simplificada de gestión de eventos (tipo Eventbrite)
 ## 🛠️ Stack Tecnológico
 
 ### Frontend
-| Tecnología | Versión | Descripción |
-|------------|---------|-------------|
-| Vue.js | 3.4+ | Framework JavaScript progresivo |
-| TypeScript | 5.3+ | Tipado estático |
-| Vuetify | 3.4+ | Framework de componentes UI Material Design |
-| Pinia | 2.1+ | Gestión de estado |
-| Vue Router | 4.2+ | Enrutamiento SPA |
-| VeeValidate | 4.12+ | Validación de formularios |
-| Yup | 1.3+ | Esquemas de validación |
-| Vue I18n | 9.8+ | Internacionalización (ES/EN) |
-| Chart.js | 4.4+ | Gráficos para dashboard |
-| Axios | 1.6+ | Cliente HTTP |
+| Tecnología  | Versión | Descripción                                 |
+|-------------|---------|---------------------------------------------|
+| Vue.js      | 3.4+    | Framework JavaScript progresivo             |
+| TypeScript  | 5.3+    | Tipado estático                             |
+| Vuetify     | 3.4+    | Framework de componentes UI Material Design |
+| Pinia       | 2.1+    | Gestión de estado                           |
+| Vue Router  | 4.2+    | Enrutamiento SPA                            |
+| VeeValidate | 4.12+   | Validación de formularios                   |
+| Yup         | 1.3+    | Esquemas de validación                      |
+| Vue I18n    | 9.8+    | Internacionalización (ES/EN)                |
+| Chart.js    | 4.4+    | Gráficos para dashboard                     |
+| Axios       | 1.6+    | Cliente HTTP                                |
 
 ### Backend
-| Tecnología | Versión | Descripción |
-|------------|---------|-------------|
-| ASP.NET Core | 8.0 | Framework web |
-| Entity Framework Core | 8.0 | ORM |
-| SQL Server | 2022 | Base de datos |
-| JWT | - | Autenticación |
-| AutoMapper | 12.0+ | Mapeo de objetos |
-| FluentValidation | 11.9+ | Validación de DTOs |
+| Tecnología            | Versión | Descripción        |
+|-----------------------|---------|--------------------|
+| ASP.NET Core          | 8.0     | Framework web      |
+| Entity Framework Core | 8.0     | ORM                |
+| SQL Server            | 2022    | Base de datos      |
+| JWT                   |    -    | Autenticación      |
+| AutoMapper            | 12.0+   | Mapeo de objetos   |
+| FluentValidation      | 11.9+   | Validación de DTOs |
 
 ### DevOps
 | Tecnología | Descripción |
@@ -55,7 +55,7 @@ git clone https://github.com/TakerVare/eventify-app.git
 cd eventify-app
 
 # Construir y ejecutar
-docker-compose build && docker compose up
+docker-compose build && docker compose up -d
 ```
 
 La aplicación estará disponible en:
@@ -65,11 +65,11 @@ La aplicación estará disponible en:
 
 ## 👥 Usuarios de Prueba
 
-| Rol | Email | Contraseña |
-|-----|-------|------------|
-| Administrador | admin@eventify.com | Admin123! |
-| Organizador | organizador@eventify.com | Org123! |
-| Usuario | usuario@eventify.com | User123! |
+|      Rol      |         Email            | Contraseña |
+|---------------|--------------------------|------------|
+| Administrador | admin@eventify.com       | Admin123!  |
+| Organizador   | organizador@eventify.com | Org123!    |
+| Usuario       | usuario@eventify.com     | User123!   |
 
 ## 📁 Estructura del Proyecto
 

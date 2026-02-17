@@ -47,9 +47,11 @@ export function useAuth() {
     const success = await authStore.login(credentials)
 
     if (success) {
-      // Solo administradores van al panel de administración; el resto a redirect (p. ej. home)
+      // Admin → dashboard; Organizer → eventos admin; User → redirect (p. ej. home)
       if (authStore.isAdmin) {
         router.push('/admin/dashboard')
+      } else if (authStore.isOrganizer) {
+        router.push('/admin/events')
       } else {
         router.push(redirectTo)
       }

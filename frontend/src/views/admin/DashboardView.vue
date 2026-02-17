@@ -51,16 +51,17 @@ const categoriesStore = useCategoriesStore()
 // Estado
 const loading = ref(true)
 
-// KPIs computados
+// KPIs computados (con ruta para acceso rápido)
 const kpis = computed(() => {
-  return [
+  const items = [
     {
       title: 'Total Eventos',
       value: eventsStore.events.length,
       icon: 'mdi-calendar-multiple',
       color: 'primary',
       change: '+12%',
-      changePositive: true
+      changePositive: true,
+      to: '/admin/events'
     },
     {
       title: 'Usuarios Activos',
@@ -68,15 +69,18 @@ const kpis = computed(() => {
       icon: 'mdi-account-group',
       color: 'success',
       change: '+8%',
-      changePositive: true
+      changePositive: true,
+      to: '/admin/users',
+      adminOnly: true // Solo Admin
     },
     {
       title: 'Registros Totales',
-      value: registrationsStore.userRegistrations.length,
+      value: registrationsStore.registrations.length,
       icon: 'mdi-ticket-confirmation',
       color: 'info',
       change: '+23%',
-      changePositive: true
+      changePositive: true,
+      to: null as string | null
     },
     {
       title: 'Ubicaciones',
@@ -84,9 +88,22 @@ const kpis = computed(() => {
       icon: 'mdi-map-marker-multiple',
       color: 'warning',
       change: '+2',
-      changePositive: true
+      changePositive: true,
+      to: '/admin/locations',
+      adminOnly: false // Admin y Organizer
+    },
+    {
+      title: 'Categorías',
+      value: categoriesStore.categories.length,
+      icon: 'mdi-tag-multiple',
+      color: 'secondary',
+      change: '',
+      changePositive: true,
+      to: '/admin/categories',
+      adminOnly: false // Admin y Organizer
     }
   ]
+  return items.filter(kpi => !kpi.adminOnly || authStore.isAdmin)
 })
 
 // Datos para gráficas
@@ -235,7 +252,10 @@ onMounted(async () => {
           sm="6"
           md="3"
         >
-          <v-card>
+          <v-card
+            :class="{ 'cursor-pointer': kpi.to }"
+            @click="kpi.to && router.push(kpi.to)"
+          >
             <v-card-text>
               <div class="d-flex justify-space-between align-start mb-2">
                 <div>
@@ -251,7 +271,7 @@ onMounted(async () => {
                 </v-avatar>
               </div>
 
-              <div class="d-flex align-center">
+              <div v-if="kpi.change" class="d-flex align-center">
                 <v-icon
                   :color="kpi.changePositive ? 'success' : 'error'"
                   size="small"
@@ -268,6 +288,9 @@ onMounted(async () => {
                 <span class="text-body-2 text-medium-emphasis ml-1">
                   vs mes anterior
                 </span>
+              </div>
+              <div v-else-if="kpi.to" class="text-body-2 text-primary">
+                Ver gestión →
               </div>
             </v-card-text>
           </v-card>
@@ -451,6 +474,15 @@ onMounted(async () => {
                 >
                   Ver Ubicaciones
                 </v-btn>
+
+                <v-btn
+                  variant="outlined"
+                  prepend-icon="mdi-tag-multiple"
+                  block
+                  @click="router.push('/admin/categories')"
+                >
+                  Gestionar Categorías
+                </v-btn>
               </div>
             </v-card-text>
           </v-card>
@@ -462,6 +494,8 @@ onMounted(async () => {
 
 <style scoped lang="scss">
 .dashboard-view {
-  // Estilos específicos si son necesarios
+  .cursor-pointer {
+    cursor: pointer;
+  }
 }
 </style>
