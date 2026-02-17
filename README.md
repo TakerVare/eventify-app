@@ -51,7 +51,7 @@ Eventify es una plataforma simplificada de gestión de eventos (tipo Eventbrite)
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/tu-usuario/eventify-app.git
+git clone https://github.com/TakerVare/eventify-app.git
 cd eventify-app
 
 # Construir y ejecutar
@@ -59,7 +59,7 @@ docker-compose build && docker compose up
 ```
 
 La aplicación estará disponible en:
-- **Frontend**: http://localhost:5173
+- **Frontend**: http://localhost:8080
 - **Backend API**: http://localhost:5000
 - **Swagger**: http://localhost:5000/swagger
 
