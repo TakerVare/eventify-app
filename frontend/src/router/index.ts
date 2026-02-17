@@ -297,8 +297,8 @@ router.beforeEach((to, from, next) => {
     // Si está autenticado y trata de acceder a login/register, redirigir
     console.log('[Router] Usuario autenticado intentando acceder a ruta de invitado, redirigiendo...')
 
-    // Redirigir según el rol
-    if (authStore.isAdmin || authStore.isOrganizer) {
+    // Solo administradores van al panel de administración; el resto a home
+    if (authStore.isAdmin) {
       next('/admin/dashboard')
     } else {
       next('/')

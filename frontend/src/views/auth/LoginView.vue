@@ -59,8 +59,8 @@ const onSubmit = handleSubmit(async (values) => {
       // Obtener URL de redirección del query param o usar default
       const redirect = route.query.redirect as string || '/'
 
-      // Si el usuario es admin u organizador, redirigir al dashboard
-      if (authStore.isAdmin || authStore.isOrganizer) {
+      // Solo administradores van al panel de administración; el resto a home o redirect
+      if (authStore.isAdmin) {
         router.push('/admin/dashboard')
       } else {
         router.push(redirect)
